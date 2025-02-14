@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'add_screen.dart';
+import 'edit_screen.dart';
 import 'history_screen.dart';
 import 'note.dart';
-import 'note_detail_screen.dart';
 import 'notes_operation.dart';
-
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -49,7 +48,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-
       body: Consumer<NotesOperation>(
         builder: (context, NotesOperation data, child) {
           return ListView.builder(
@@ -75,20 +73,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ));
                 },
-
                 background: Container(
                   color: Colors.black,
                   alignment: Alignment.centerRight,
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Icon(Icons.delete, color: Colors.white),
                 ),
-
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NoteDetailScreen(note),
+                        builder: (context) => EditScreen(note), // Navigate to EditScreen
                       ),
                     );
                   },
@@ -96,14 +92,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             },
-
           );
         },
-
       ),
-
     );
-
   }
 }
 
@@ -126,9 +118,25 @@ class NotesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            note.title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                note.title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                icon: Icon(Icons.edit, color: Colors.blueGrey),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditScreen(note), // Navigate to EditScreen
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           SizedBox(height: 5),
           Text(
@@ -143,7 +151,7 @@ class NotesCard extends StatelessWidget {
               maxLines: 3,
               style: TextStyle(fontSize: 17),
             ),
-         ),
+          ),
         ],
       ),
     );
