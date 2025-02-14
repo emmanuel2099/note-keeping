@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'add_screen.dart';
 import 'edit_screen.dart';
 import 'history_screen.dart';
-import 'note.dart';
-import 'notes_operation.dart';
+import '../modes/note.dart';
+import '../widget/notes_operation.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

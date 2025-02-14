@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'notes_operation.dart';
+import '../widget/notes_operation.dart';
 
 class AddScreen extends StatelessWidget {
   @override

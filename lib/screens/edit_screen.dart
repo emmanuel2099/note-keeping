@@ -1,8 +1,8 @@
 // edit_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'note.dart';
-import 'notes_operation.dart';
+import '../modes/note.dart';
+import '../widget/notes_operation.dart';
 
 class EditScreen extends StatefulWidget {
   final Note note;

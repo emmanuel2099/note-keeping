@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'note.dart';
+import '../modes/note.dart';
 
 class NotesOperation extends ChangeNotifier {
   List<Note> _notes = [];
