@@ -9,8 +9,8 @@ class Note {
     required this.date,
   });
 
-  // Convert a Note into a Map
-  Map<String, dynamic> toJson() {
+  // Convert a Note into a Map (for saving)
+  Map<String, dynamic> toMap() {
     return {
       'title': title,
       'description': description,
@@ -18,12 +18,12 @@ class Note {
     };
   }
 
-  // Convert a Map into a Note
-  factory Note.fromJson(Map<String, dynamic> json) {
+  // Convert a Map into a Note (for loading)
+  factory Note.fromMap(Map<String, dynamic> map) {
     return Note(
-      title: json['title'],
-      description: json['description'],
-      date: json['date'],
+      title: map['title'],
+      description: map['description'],
+      date: map['date'],
     );
   }
 }

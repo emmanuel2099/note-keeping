@@ -1,4 +1,3 @@
-// edit_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../modes/note.dart';
@@ -14,14 +13,15 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreenState extends State<EditScreen> {
- late TextEditingController _titleController;
- late TextEditingController _descriptionController;
+  late TextEditingController _titleController;
+  late TextEditingController _descriptionController;
 
   @override
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.note.title);
-    _descriptionController = TextEditingController(text: widget.note.description);
+    _descriptionController =
+        TextEditingController(text: widget.note.description);
   }
 
   @override
@@ -48,17 +48,13 @@ class _EditScreenState extends State<EditScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Update the note and go back
-                Provider.of<NotesOperation>(context, listen: false)
-                    .updateNote(widget.note, _titleController.text, _descriptionController.text);
+                Provider.of<NotesOperation>(context, listen: false).updateNote(
+                    widget.note,
+                    _titleController.text,
+                    _descriptionController.text);
                 Navigator.pop(context);
               },
-              child: Text('Save Changes',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-
-              ),
+              child: Text('Save Changes'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueGrey,
               ),

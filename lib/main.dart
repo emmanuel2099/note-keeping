@@ -1,21 +1,36 @@
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';  // Import provider package
+import 'package:task_manager/screens/home_screen.dart';
+import 'package:task_manager/widget/notes_operation.dart'; // Import NotesOperation
+import 'modes/lightmode_dackmode.dart';
 
-import 'screens/home_screen.dart';
-import 'widget/notes_operation.dart';
+void main() {
+  runApp(MyApp());
+}
 
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-void main() => runApp(MyApp());
+class _MyAppState extends State<MyApp> {
+  bool isDarkMode = false; // Default theme is light mode
 
-class MyApp extends StatelessWidget {
+  // Toggle theme mode
+  void _toggleTheme(bool isDark) {
+    setState(() {
+      isDarkMode = isDark;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<NotesOperation>(
+    return ChangeNotifierProvider(
       create: (context) => NotesOperation(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        theme: isDarkMode ? darkTheme : lightTheme,
+        home: HomeScreen(onThemeChanged: _toggleTheme, isDarkMode: isDarkMode),
       ),
     );
   }

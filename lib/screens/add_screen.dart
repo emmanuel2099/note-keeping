@@ -3,18 +3,37 @@ import 'package:provider/provider.dart';
 import '../widget/notes_operation.dart';
 
 class AddScreen extends StatelessWidget {
+  final Function(bool) onThemeChanged;
+  final bool isDarkMode;
+
+  AddScreen({required this.onThemeChanged, required this.isDarkMode});
+
   @override
   Widget build(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: isDarkMode ? Colors.black : Colors.blueGrey,
       appBar: AppBar(
-        title: Text('Add Note'),
+        title: Text(
+          'Add Note',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        actions: [
+          // Toggle for Dark and Light Mode
+          Switch(
+            value: isDarkMode,
+            onChanged: (value) {
+              onThemeChanged(value);
+            },
+            activeColor: Colors.white,
+            inactiveThumbColor: Colors.black,
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(15),
@@ -27,13 +46,23 @@ class AddScreen extends StatelessWidget {
                 hintStyle: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: isDarkMode ? Colors.white54 : Colors.white,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: isDarkMode ? Colors.white : Colors.white,
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: isDarkMode ? Colors.white : Colors.white,
+                  ),
                 ),
               ),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: isDarkMode ? Colors.white : Colors.white,
               ),
             ),
             Expanded(
@@ -43,14 +72,24 @@ class AddScreen extends StatelessWidget {
                   hintText: 'Enter Description',
                   hintStyle: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
+                    color: isDarkMode ? Colors.white54 : Colors.white,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: isDarkMode ? Colors.white : Colors.white,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: isDarkMode ? Colors.white : Colors.white,
+                    ),
                   ),
                 ),
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.white,
+                  color: isDarkMode ? Colors.white : Colors.white,
                 ),
               ),
             ),
@@ -72,14 +111,14 @@ class AddScreen extends StatelessWidget {
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                backgroundColor: Colors.white,
+                backgroundColor: isDarkMode ? Colors.white : Colors.white,
               ),
               child: Text(
                 'Add Note',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey,
+                  color: isDarkMode ? Colors.black : Colors.blueGrey,
                 ),
               ),
             )
